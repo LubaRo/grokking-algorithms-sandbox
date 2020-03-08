@@ -1,0 +1,13 @@
+{
+    "name": "lubaro/program_sandbox",
+    "description": "Place for experiments",
+    "authors": [
+        {
+            "name": "LubaRo",
+            "email": "cnlmode@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    }
+}

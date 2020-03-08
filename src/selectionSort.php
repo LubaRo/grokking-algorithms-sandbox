@@ -20,5 +20,3 @@ function selectionSort($arr)
 
     return $sortedArr;
 }
-
-print_r(selectionSort([2, 8, 10, 3, 1, 84, 32]));
