@@ -4,7 +4,7 @@ require_once __DIR__ . "/../src/binarySearchRecursive.php";
 
 use PHPUnit\Framework\TestCase;
 
-class binarySearchRecursivehTest extends TestCase
+class binarySearchRecursiveTest extends TestCase
 {
     public function testBinarySearchRecursive()
     {
@@ -16,5 +16,13 @@ class binarySearchRecursivehTest extends TestCase
         $this->assertEquals(8, binarySearchRecursive($sorted_array, 27));
         $this->assertEquals(10, binarySearchRecursive($sorted_array, 40));
         $this->assertEquals(13, binarySearchRecursive($sorted_array, 50));
+
+
+        $sorted_array = [-2 => 1, -1 => 2, 0 => 3, 1 => 4, 2 => 5];
+
+        $this->assertEquals(-2, binarySearchRecursive($sorted_array, 1));
+        $this->assertEquals(-1, binarySearchRecursive($sorted_array, 2));
+        $this->assertEquals(0, binarySearchRecursive($sorted_array, 3));
+        $this->assertEquals(2, binarySearchRecursive($sorted_array, 5));
     }
 }
