@@ -4,25 +4,34 @@ require_once __DIR__ . "/../src/binarySearchRecursive.php";
 
 use PHPUnit\Framework\TestCase;
 
-class binarySearchRecursiveTest extends TestCase
+class BinarySearchRecursiveTest extends TestCase
 {
-    public function testBinarySearchRecursive()
+    /**
+     * @dataProvider provider
+     */
+    public function testBinarySearchRecursive($sorted_array, $needle, $expected)
     {
-        $sorted_array = [1, 3, 5, 7, 12, 15, 18, 23, 27, 32, 40, 45, 46, 50];
+        $result = binarySearchRecursive($sorted_array, $needle);
+        $this->assertSame($expected, $result);
+    }
 
-        $this->assertEquals(null, binarySearchRecursive($sorted_array, 0));
-        $this->assertEquals(0, binarySearchRecursive($sorted_array, 1));
-        $this->assertEquals(5, binarySearchRecursive($sorted_array, 15));
-        $this->assertEquals(8, binarySearchRecursive($sorted_array, 27));
-        $this->assertEquals(10, binarySearchRecursive($sorted_array, 40));
-        $this->assertEquals(13, binarySearchRecursive($sorted_array, 50));
+    public function provider()
+    {
+        $sorted_array1 = [1, 3, 5, 7, 12, 15, 18, 23, 27, 32, 40, 45, 46, 50];
+        $sorted_array2 = [-2 => 1, -1 => 2, 0 => 3, 1 => 4, 2 => 5];
 
+        return [
+            'a' => [$sorted_array1, 0, null],
+            'b' => [$sorted_array1, 1, 0],
+            'c' => [$sorted_array1, 15, 5],
+            'd' => [$sorted_array1, 27, 8],
+            'e' => [$sorted_array1, 40, 10],
+            'f' => [$sorted_array1, 50, 13],
 
-        $sorted_array = [-2 => 1, -1 => 2, 0 => 3, 1 => 4, 2 => 5];
-
-        $this->assertEquals(-2, binarySearchRecursive($sorted_array, 1));
-        $this->assertEquals(-1, binarySearchRecursive($sorted_array, 2));
-        $this->assertEquals(0, binarySearchRecursive($sorted_array, 3));
-        $this->assertEquals(2, binarySearchRecursive($sorted_array, 5));
+            'g' => [$sorted_array2, 1, -2],
+            'h' => [$sorted_array2, 2, -1],
+            'i' => [$sorted_array2, 3, 0],
+            'j' => [$sorted_array2, 5, 2]
+        ];
     }
 }

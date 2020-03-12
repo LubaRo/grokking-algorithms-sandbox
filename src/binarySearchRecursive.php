@@ -10,7 +10,7 @@ function binarySearchRecursive($array, $needle, $key_start = null, $key_end = nu
     }
 
     if ($key_start == $key_end && $array[$key_start] == $needle) {
-        return $key_start;
+        return (int) $key_start;
     }
 
     if ($key_end - $key_start < 0) {
@@ -20,7 +20,7 @@ function binarySearchRecursive($array, $needle, $key_start = null, $key_end = nu
     $middle_key = floor(($key_start + $key_end) / 2);
 
     if ($array[$middle_key] == $needle) {
-        return $middle_key;
+        return (int) $middle_key;
     } elseif ($array[$middle_key] > $needle) {
         $new_start = $key_start;
         $new_end = $middle_key - 1;
