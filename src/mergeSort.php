@@ -2,22 +2,33 @@
 
 function mergeSort($arr1, $arr2)
 {
-    if (empty($arr1)) {
-        return $arr2;
-    } elseif (empty($arr2)) {
-        return $arr1;
-    }
-
     $result = [];
 
-    $first_elem1 = reset($arr1);
-    $first_elem2 = reset($arr2);
+    $pointer1 = $pointer2 = 0;
+    $max_key1 = sizeof($arr1) - 1;
+    $max_key2 = sizeof($arr2) - 1;
 
-    if ($first_elem1 < $first_elem2) {
-        $result[] = array_shift($arr1);
-    } else {
-        $result[] = array_shift($arr2);
+    while ($pointer1 <= $max_key1  && $pointer2 <= $max_key2) {
+        if ($arr1[$pointer1] < $arr2[$pointer2]) {
+            $result[] = $arr1[$pointer1];
+            $pointer1 += 1;
+        } else {
+            $result[] = $arr2[$pointer2];
+            $pointer2 += 1;
+        }
     }
 
-    return array_merge($result, mergeSort($arr1, $arr2));
+    $end_arr = [];
+
+    if ($pointer1 > $max_key1 && $pointer2 <= $max_key2) {
+        $end_arr = array_slice($arr2, $pointer2);
+    } elseif ($pointer2 > $max_key2 && $pointer1 <= $max_key1) {
+        $end_arr = array_slice($arr1, $pointer1);
+    }
+
+    if (!empty($end_arr)) {
+        $result = array_merge($result, $end_arr);
+    }
+
+    return $result;
 }
