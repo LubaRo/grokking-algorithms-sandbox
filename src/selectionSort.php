@@ -18,6 +18,19 @@ function selectionSort($unsortedArr)
     return $sortedArr;
 }
 
+function selectionSortRecursive($unsortedArr)
+{
+    if (count($unsortedArr) <= 1) {
+        return $unsortedArr;
+    }
+
+    [$minVal, $minValKey] = findSmallest($unsortedArr);
+
+    unset($unsortedArr[$minValKey]);
+
+    return array_merge([$minVal], selectionSortRecursive($unsortedArr));
+}
+
 function findSmallest($list)
 {
     if (empty($list)) {
