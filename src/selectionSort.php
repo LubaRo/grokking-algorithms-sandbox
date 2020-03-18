@@ -1,22 +1,38 @@
 <?php
 
-function selectionSort($arr)
+function selectionSort($unsortedArr)
 {
-    $unsortedArr = $arr;
+    if (count($unsortedArr) <= 1) {
+        return $unsortedArr;
+    }
+
     $sortedArr = [];
 
     while (sizeof($unsortedArr) > 0) {
-        $minVal = false;
-        foreach ($unsortedArr as $key => $value) {
-            if ($value < $minVal || $minVal === false) {
-                $minVal = $value;
-                $minValkey = $key;
-            }
-        }
+        [$minVal, $minValKey] = findSmallest($unsortedArr);
 
         $sortedArr[] = $minVal;
-        unset($unsortedArr[$minValkey]);
+        unset($unsortedArr[$minValKey]);
     }
 
     return $sortedArr;
+}
+
+function findSmallest($list)
+{
+    if (empty($list)) {
+        return [null, null];
+    }
+
+    $smalletsKey = array_key_first($list);
+    $smallestValue = $list[$smalletsKey];
+
+    foreach ($list as $key => $value) {
+        if ($value < $smallestValue) {
+            $smallestValue = $value;
+            $smalletsKey = $key;
+        }
+    }
+
+    return [$smallestValue, $smalletsKey];
 }
