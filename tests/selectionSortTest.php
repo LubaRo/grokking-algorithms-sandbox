@@ -18,16 +18,17 @@ class SelectionSortTest extends TestCase
         $this->assertEquals($sorted_array, selectionSort($unsorted_array));
     }
 
-    public function testSelectionSortImproved()
+    public function selectionSortOptimal()
     {
-        $this->assertEquals([], selectionSortImproved([]));
-        $this->assertEquals([56], selectionSortImproved([56]));
-        $this->assertEquals([1, 3], selectionSortImproved([3, 1]));
+        $this->assertEquals([], selectionSortOptimal([]));
+        $this->assertEquals([56], selectionSortOptimal([56]));
+        $this->assertEquals([1, 3], selectionSortOptimal([3, 1]));
 
         $unsorted_array = [2, 8, -10, 3, 1, 84, 32];
         $sorted_array = [-10, 1, 2, 3, 8, 32, 84];
+        $this->assertEquals($sorted_array, selectionSortOptimal($unsorted_array));
 
-        $this->assertEquals($sorted_array, selectionSortImproved($unsorted_array));
+        $this->assertEquals([1, 2, 3, 4, 5], selectionSortOptimal([5, 4, 3, 2, 1]));
     }
 
     public function testSelectionSortRecursive()
