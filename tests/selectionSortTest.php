@@ -4,72 +4,49 @@ require_once __DIR__ . "/../src/selectionSort.php";
 
 use PHPUnit\Framework\TestCase;
 
-class selectionSortTest extends TestCase
+class SelectionSortTest extends TestCase
 {
     public function testSelectionSort1()
     {
         $this->assertEquals([], selectionSort([]));
-    }
-
-    public function testSelectionSort2()
-    {
         $this->assertEquals([2], selectionSort([2]));
-    }
+        $this->assertEquals([1, 3], selectionSort([3, 1]));
 
-    public function testSelectionSort3()
-    {
-        $unsorted_array = [3, 1];
-        $sorted_array = [1, 3];
-
-        $this->assertEquals($sorted_array, selectionSort($unsorted_array));
-    }
-
-    public function testSelectionSort4()
-    {
         $unsorted_array = [2, 8, -10, 3, 1, 84, 32];
         $sorted_array = [-10, 1, 2, 3, 8, 32, 84];
 
         $this->assertEquals($sorted_array, selectionSort($unsorted_array));
     }
 
-    public function testSelectionSortRecursive1()
+    public function testSelectionSortImproved()
+    {
+        $this->assertEquals([], selectionSortImproved([]));
+        $this->assertEquals([56], selectionSortImproved([56]));
+        $this->assertEquals([1, 3], selectionSortImproved([3, 1]));
+
+        $unsorted_array = [2, 8, -10, 3, 1, 84, 32];
+        $sorted_array = [-10, 1, 2, 3, 8, 32, 84];
+
+        $this->assertEquals($sorted_array, selectionSortImproved($unsorted_array));
+    }
+
+    public function testSelectionSortRecursive()
     {
         $this->assertEquals([], selectionSortRecursive([]));
-    }
-
-    public function testSelectionSortRecursive2()
-    {
         $this->assertEquals([2], selectionSortRecursive([2]));
-    }
-
-    public function testSelectionSortRecursive3()
-    {
-        $unsorted_array = [3, 1];
-        $sorted_array = [1, 3];
-
-        $this->assertEquals($sorted_array, selectionSortRecursive($unsorted_array));
-    }
-
-    public function testSelectionSortRecursive4()
-    {
+        $this->assertEquals([3, 18], selectionSortRecursive([3, 18]));
+        $this->assertEquals([3, 18], selectionSortRecursive([18, 3]));
+ 
         $unsorted_array = [2, 8, -10, 3, 1, 84, 32];
         $sorted_array = [-10, 1, 2, 3, 8, 32, 84];
 
         $this->assertEquals($sorted_array, selectionSortRecursive($unsorted_array));
     }
 
-    public function testFindSmallest1()
+    public function testFindSmallest()
     {
         $this->assertEquals([null, null], findSmallest([]));
-    }
-
-    public function testFindSmallest2()
-    {
         $this->assertEquals([15, 0], findSmallest([15]));
-    }
-
-    public function testFindSmallest3()
-    {
         $this->assertEquals([-457, 'z'], findSmallest(['a' => 15, 4 => 18, 'z' => -457, 'key' => 90]));
     }
 }
